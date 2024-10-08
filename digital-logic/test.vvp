@@ -1,0 +1,49 @@
+#! /opt/homebrew/Cellar/icarus-verilog/12.0/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/system.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/v2005_math.vpi";
+:vpi_module "/opt/homebrew/Cellar/icarus-verilog/12.0/lib/ivl/va_math.vpi";
+S_0x13b604080 .scope module, "dec2to4" "dec2to4" 2 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 2 "i";
+    .port_info 1 /INPUT 1 "en";
+    .port_info 2 /OUTPUT 4 "d";
+L_0x6000010a4070 .functor NOT 1, L_0x600000aac000, C4<0>, C4<0>, C4<0>;
+L_0x6000010a40e0 .functor NOT 1, L_0x600000aac0a0, C4<0>, C4<0>, C4<0>;
+o0x130008220 .functor BUFZ 1, C4<z>; HiZ drive
+L_0x6000010a4150 .functor AND 1, o0x130008220, L_0x6000010a4070, L_0x6000010a40e0, C4<1>;
+L_0x6000010a41c0 .functor AND 1, o0x130008220, L_0x6000010a4070, L_0x600000aac140, C4<1>;
+L_0x6000010a4230 .functor AND 1, o0x130008220, L_0x600000aac1e0, L_0x6000010a40e0, C4<1>;
+L_0x6000010a42a0 .functor AND 1, o0x130008220, L_0x600000aac320, L_0x600000aac3c0, C4<1>;
+v0x6000009a8000_0 .net *"_ivl_1", 0 0, L_0x600000aac000;  1 drivers
+v0x6000009a8090_0 .net *"_ivl_10", 0 0, L_0x6000010a4230;  1 drivers
+v0x6000009a8120_0 .net *"_ivl_13", 0 0, L_0x600000aac1e0;  1 drivers
+v0x6000009a81b0_0 .net *"_ivl_14", 0 0, L_0x6000010a42a0;  1 drivers
+v0x6000009a8240_0 .net *"_ivl_18", 0 0, L_0x600000aac320;  1 drivers
+v0x6000009a82d0_0 .net *"_ivl_20", 0 0, L_0x600000aac3c0;  1 drivers
+v0x6000009a8360_0 .net *"_ivl_3", 0 0, L_0x600000aac0a0;  1 drivers
+v0x6000009a83f0_0 .net *"_ivl_4", 0 0, L_0x6000010a4150;  1 drivers
+v0x6000009a8480_0 .net *"_ivl_6", 0 0, L_0x6000010a41c0;  1 drivers
+v0x6000009a8510_0 .net *"_ivl_9", 0 0, L_0x600000aac140;  1 drivers
+v0x6000009a85a0_0 .net "d", 3 0, L_0x600000aac280;  1 drivers
+v0x6000009a8630_0 .net "en", 0 0, o0x130008220;  0 drivers
+o0x130008250 .functor BUFZ 2, C4<zz>; HiZ drive
+v0x6000009a86c0_0 .net "i", 1 0, o0x130008250;  0 drivers
+v0x6000009a8750_0 .net "n0", 0 0, L_0x6000010a4070;  1 drivers
+v0x6000009a87e0_0 .net "n1", 0 0, L_0x6000010a40e0;  1 drivers
+L_0x600000aac000 .part o0x130008250, 0, 1;
+L_0x600000aac0a0 .part o0x130008250, 1, 1;
+L_0x600000aac140 .part o0x130008250, 1, 1;
+L_0x600000aac1e0 .part o0x130008250, 0, 1;
+L_0x600000aac280 .concat8 [ 1 1 1 1], L_0x6000010a4150, L_0x6000010a41c0, L_0x6000010a4230, L_0x6000010a42a0;
+L_0x600000aac320 .part o0x130008250, 0, 1;
+L_0x600000aac3c0 .part o0x130008250, 1, 1;
+# The file index is used to find the file name in the following table.
+:file_names 3;
+    "N/A";
+    "<interactive>";
+    "tutorial6.v";
