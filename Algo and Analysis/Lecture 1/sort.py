@@ -2,6 +2,17 @@
 
 
 
+# Analysis of insertion sort:
+# Memory Complexity:
+# - Best: n 
+# - Worst: n
+# - Average: n
+# 
+# Time Complexity 
+# - Best: n (If already sorted)
+# - Worst: n(n-1) / 2 => n^2
+# - Average:
+#   E[arr_i] = 
 def insertion_sort(arr):
     for i in range(len(arr)):
         arrI = arr[i]
