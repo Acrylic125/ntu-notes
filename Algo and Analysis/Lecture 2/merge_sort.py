@@ -35,8 +35,65 @@ def merge_sort(arr: List[int]) -> List[int]:
 
     return merge(0, len(arr) - 1)
 
+def merge_sort_in_place(arr: List[int]):
+    def merge(l: int, r: int):
+        delta = r - l
+        if delta <= 0:
+            return
+        mid = delta // 2 + l
+        
+        merge(l, mid)
+        merge(mid + 1, r)
 
+        left_ptr_start, left_ptr_end = l, mid 
+        right_ptr_start, right_ptr_end = mid+1, r
+
+        while True:
+            left_head = -1
+            right_head = -1
+            
+            if (left_ptr_end-left_ptr_start) < 0:
+                left_head = left_ptr_start
+            if (right_ptr_end-right_ptr_start) < 0:
+                right_head = right_ptr_start
+
+            if left_head == -1 and right_head == -1:
+                break
+
+            if left_head != -1 and right_head != -1:
+                # Case 1, we take from left 
+                # means we just shift left start ptr by +1
+                if arr[left_head] < arr[right_head]:
+                    left_ptr_start += 1
+                else:
+                    # Case 2, we take from right 
+                    # means we shift right ptr by +1
+                    # AND shift elements of left to the right.
+                    pick = arr[right_head]
+                    for i in range(left_ptr_end, left_ptr_start, -1):
+                        arr[i+1] = arr[i]
+                    right_ptr_start += 1
+                    arr[left_ptr_start] = pick
+                    left_ptr_start += 1
+                    left_ptr_end += 1
+            # Case 1
+            elif left_head != -1:
+                left_ptr_start += 1
+            else:
+                pick = arr[right_head]
+                for i in range(left_ptr_end, left_ptr_start, -1):
+                    arr[i+1] = arr[i]
+                right_ptr_start += 1
+                arr[left_ptr_start] = pick
+                left_ptr_start += 1
+                left_ptr_end += 1
+
+
+        
 arr = [1, 4, 2, 7, 8, 5, 6, 3]
 print(merge_sort(arr))
 arr = [2, 4, 1, 1, 7, 3]
 print(merge_sort(arr))
+arr = [1, 4, 2, 7, 8, 5, 6, 3]
+merge_sort_in_place(arr)
+print(arr)
