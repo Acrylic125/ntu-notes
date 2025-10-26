@@ -1,4 +1,5 @@
 from typing import List
+from itertools import permutations
 
 def top_sort(E):
     sort_graph = []
@@ -33,6 +34,7 @@ def is_valid_top_sort(solution, E):
     # Otherwise, accept.
     return True
 
+
 def graph_search(E, parent: List[int]):
     solutions = []
 
@@ -46,6 +48,17 @@ def graph_search(E, parent: List[int]):
                 sub_solutions = graph_search(E, candidate)
                 for sol in sub_solutions:
                     solutions.append(sol)
+    return solutions
+
+def bf_permute(E):
+    my_list = range(len(E))
+    all_permutations = permutations(my_list)
+
+    solutions = list(
+            filter(
+                lambda l: is_valid_top_sort(l, E), all_permutations
+                )
+            )
     return solutions
 
 # Graph 1: Simple linear dependency chain (5 nodes)
@@ -112,9 +125,15 @@ print(f"Graph: {graph4}")
 sorted_graph = top_sort(graph4)
 print(f"Top Sorted: {list(map(lambda i: chars[i], sorted_graph))}")
 print(f"Is valid?: {is_valid_top_sort(sorted_graph, graph4)}")
+print(f"With brute force:")
+solutions = bf_permute(graph4)
+print(f"  Total possible solutions: {len(solutions)}")
+print(f"With graph search:")
 solutions = graph_search(graph4, [])
-print(f"Total possible solutions: {len(solutions)}")
+print(f"  Total possible solutions: {len(solutions)}")
+print()
+print(f"All possibilities:")
 for sol in solutions:
-    print(f"{list(map(lambda i: chars[i], sol))} is_valid? {is_valid_top_sort(sol, graph4)}")
+    print(f"  {list(map(lambda i: chars[i], sol))} is_valid? {is_valid_top_sort(sol, graph4)}")
 
 
